@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="husky_payload" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- 4 SUPPORT POLES (BLACK) -->
+  <link name="pole_fl"><visual><geometry><cylinder radius="0.015" length="0.10"/></geometry><material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material></visual><collision><geometry><cylinder radius="0.015" length="0.10"/></geometry></collision></link>
+  <joint name="pole_fl_joint" type="fixed"><parent link="base_link"/><child link="pole_fl"/><origin xyz="0.25 0.15 0.24" rpy="0 0 0"/></joint>
+  <link name="pole_fr"><visual><geometry><cylinder radius="0.015" length="0.10"/></geometry><material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material></visual><collision><geometry><cylinder radius="0.015" length="0.10"/></geometry></collision></link>
+  <joint name="pole_fr_joint" type="fixed"><parent link="base_link"/><child link="pole_fr"/><origin xyz="0.25 -0.15 0.24" rpy="0 0 0"/></joint>
+  <link name="pole_bl"><visual><geometry><cylinder radius="0.015" length="0.10"/></geometry><material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material></visual><collision><geometry><cylinder radius="0.015" length="0.10"/></geometry></collision></link>
+  <joint name="pole_bl_joint" type="fixed"><parent link="base_link"/><child link="pole_bl"/><origin xyz="-0.25 0.15 0.24" rpy="0 0 0"/></joint>
+  <link name="pole_br"><visual><geometry><cylinder radius="0.015" length="0.10"/></geometry><material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material></visual><collision><geometry><cylinder radius="0.015" length="0.10"/></geometry></collision></link>
+  <joint name="pole_br_joint" type="fixed"><parent link="base_link"/><child link="pole_br"/><origin xyz="-0.25 -0.15 0.24" rpy="0 0 0"/></joint>
+
+  <!-- LOWER BASE PLATE (GREY) -->
+  <link name="payload_base_plate">
+    <visual><geometry><box size="0.6 0.4 0.02"/></geometry><material name="grey"><color rgba="0.4 0.4 0.4 1.0"/></material></visual>
+    <collision><geometry><box size="0.6 0.4 0.02"/></geometry></collision>
+  </link>
+  <joint name="base_to_plate" type="fixed"><parent link="base_link"/><child link="payload_base_plate"/><origin xyz="0 0 0.30" rpy="0 0 0"/></joint>
+
+  <!-- CENTER PEDESTAL POLE (BLACK) -->
+  <link name="center_pole">
+    <visual><geometry><cylinder radius="0.02" length="0.15"/></geometry><material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.15"/></geometry></collision>
+  </link>
+  <joint name="plate_to_pole" type="fixed"><parent link="payload_base_plate"/><child link="center_pole"/><origin xyz="0 0 0.085" rpy="0 0 0"/></joint>
+
+  <!-- UPPER PLATE (BLACK) -->
+  <link name="upper_plate">
+    <visual><geometry><box size="0.14 0.14 0.01"/></geometry><material name="black"><color rgba="0.0 0.0 0.0 1.0"/></material></visual>
+    <collision><geometry><box size="0.14 0.14 0.01"/></geometry></collision>
+  </link>
+  <joint name="pole_to_upper" type="fixed"><parent link="center_pole"/><child link="upper_plate"/><origin xyz="0 0 0.08" rpy="0 0 0"/></joint>
+</robot>
